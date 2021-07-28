@@ -1,0 +1,11 @@
+LIBRARY virtual_controller
+EXPORTS
+    setEventType
+    setKeyCode
+    setRelCode
+    setAbsCode
+    emitEvent
+    createDevice
+    destroyDevice
+    openRequest
+    closeRequest

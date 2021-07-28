@@ -1,0 +1,43 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SM J730F",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "SM J730F"
+    },
+    {
+      "name": "Infinix X655C",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "Infinix X655C"
+    },
+    {
+      "name": "Linux",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "linux"
+    },
+    {
+      "name": "smart_controller",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "smart_controller (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "vclib",
+      "cwd": "packages/vclib",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}

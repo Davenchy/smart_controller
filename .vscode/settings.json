@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "uinput.h": "c",
+    "string.h": "c",
+    "virtual_controller_plugin.h": "c",
+    "flutter_linux.h": "c",
+    "cstring": "cpp",
+    "virtual_controller.h": "c"
+  }
+}
