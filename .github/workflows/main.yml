@@ -33,7 +33,11 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1.5.3
         name: Install Flutter Engine
-      - name: Download pub packages
+      - name: support linux platform
+        run: flutter config --enable-linux-desktop
+      - name: Flutter Doctor
+        run: flutter doctor
+      - name: Get pub packages
         run: flutter pub get
       - name: Build apk releases
         run: flutter build apk --release --split-per-abi
@@ -47,7 +51,7 @@ jobs:
           cd build/linux/x64/release
           cp bundle smart_controller -r
           tar -cf linux_release.tar smart_controller
-      - name: Create Releases
+      - name: Publish Releases
         uses: ncipollo/release-action@v1
         with:
           name: ${{ github.event.inputs.version_name }}
