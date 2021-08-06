@@ -42,7 +42,7 @@ jobs:
       - name: Get pub packages
         run: flutter pub get
       - name: Create releases directory
-        run: mkdir build/releases
+        run: mkdir -p build/releases
       - name: Build apk releases
         run: |
           flutter build apk --release --split-per-abi
