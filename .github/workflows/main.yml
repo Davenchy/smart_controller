@@ -37,7 +37,20 @@ jobs:
         run: flutter pub get
       - name: Build apk releases
         run: flutter build apk --release --split-per-abi
-      - name: Release Draft
-        uses: release-drafter/release-drafter@v5.15.0
+      - name: Build apk release without split
+        run: flutter build apk --release
+      - name: Build appbundle release
+        run: flutter build appbundle --release
+      - name: Build linux release
+        run: |
+          flutter build linux --release
+          cd build/linux/x64/release
+          cp bundle smart_controller -r
+          tar -cf linux_release.tar smart_controller
+      - name: Create Releases
+        uses: ncipollo/release-action@v1
         with:
           name: ${{ github.event.inputs.version_name }}
+          tag: ${{ github.event.inputs.version_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: 'build/linux/x64/release/linux_release.tar,build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab'
