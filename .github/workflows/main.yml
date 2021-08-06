@@ -41,22 +41,31 @@ jobs:
         run: flutter doctor
       - name: Get pub packages
         run: flutter pub get
+      - name: Create releases directory
+        run: mkdir build/releases
       - name: Build apk releases
-        run: flutter build apk --release --split-per-abi
+        run: |
+          flutter build apk --release --split-per-abi
+          mv build/app/outputs/apk/release/*.apk build/releases
       - name: Build apk release without split
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release
+          mv build/app/outputs/apk/release/*.apk build/releases
       - name: Build appbundle release
-        run: flutter build appbundle --release
+        run: |
+          flutter build appbundle --release
+          mv build/app/outputs/bundle/release/*.aab build/releases
       - name: Build linux release
         run: |
           flutter build linux --release
           cd build/linux/x64/release
           cp bundle smart_controller -r
-          tar -cf linux_release.tar smart_controller
+          tar -czvf linux_release.tar.gz smart_controller
+          mv linux_release.tar.gz ../../../releases
       - name: Publish Releases
         uses: ncipollo/release-action@v1
         with:
           name: ${{ github.event.inputs.version_name }}
           tag: ${{ github.event.inputs.version_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: 'build/linux/x64/release/linux_release.tar,build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab'
+          artifacts: 'build/releases/*.*'
